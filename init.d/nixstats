@@ -1,0 +1,25 @@
+#! /bin/sh
+# chkconfig: 345 99 01
+# description: NIXStats monitoring agent
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+cd /opt/nixstats/
+case "$1" in
+  start)
+    echo "Starting NIXStats Agent"
+    # run application you want to start
+    python_bin /opt/nixstats/nixstats.py start
+    ;;
+  stop)
+    echo "Stopping NIXStats Agent"
+    # kill application you want to stop
+    python_bin /opt/nixstats/nixstats.py stop
+    ;;
+  restart)
+    echo "Restarting NIXStats Agent"
+    # kill application you want to stop
+    python_bin /opt/nixstats/nixstats.py restart
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart}"
+esac
+exit 0
