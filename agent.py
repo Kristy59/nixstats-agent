@@ -1,27 +1,23 @@
 #!/usr/bin/env python
-import sys, time, json, platform, os, requests, multiprocessing, string
+import sys, time, json, platform, os, requests, multiprocessing, string, netifaces, pingparser, bz2, re
 try:
     requests.packages.urllib3.disable_warnings()
 except:
     pass
-#from daemon import Daemon
-import netifaces
+from subprocess import Popen, PIPE
 from configobj import ConfigObj
 from collections import namedtuple
-import pingparser
-import bz2
-import re
 try:
   import psutil
 except ImportError:
    print "Cannot import psutil module - this is needed for this application.";
    print "Exiting..."
    sys.exit();
-
 try:
     import pwd
 except ImportError:
     pwd = None
+
 try:
     from pymdstat import MdStat
 except ImportError:
