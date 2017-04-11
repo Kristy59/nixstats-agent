@@ -7,17 +7,26 @@ case "$1" in
   start)
     echo "Starting NIXStats Agent"
     # run application you want to start
-    python_bin /opt/nixstats/nixstats.py start
+    python /opt/nixstats/nixstats.py start
     ;;
   stop)
     echo "Stopping NIXStats Agent"
     # kill application you want to stop
-    python_bin /opt/nixstats/nixstats.py stop
+    python /opt/nixstats/nixstats.py stop
     ;;
   restart)
     echo "Restarting NIXStats Agent"
     # kill application you want to stop
-    python_bin /opt/nixstats/nixstats.py restart
+    python /opt/nixstats/nixstats.py restart
+    ;;
+  status)
+    ps auwxf | grep -i /opt/nixstats/nixstats.py | grep -v grep | grep -vi defunct 1>&2 > /dev/null
+    status_nixstats=$(echo $?)
+    if [[ $status_nixstats -eq 0 ]]; then
+	echo -e "\033[32mNIXStats Agent Already Start\033[0m"
+    else
+	echo -e "\033[31mNIXStats Agent Isn't Running\033[0m"
+    fi
     ;;
   *)
     echo "Usage: $0 {start|stop|restart}"
