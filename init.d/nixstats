@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 # chkconfig: 345 99 01
 # description: NIXStats monitoring agent
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
